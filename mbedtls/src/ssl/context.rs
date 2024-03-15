@@ -261,7 +261,7 @@ impl<T> Context<T> {
     /// Upon successful return, the context can be communicated with using the
     /// `std::io::Read` and `std::io::Write` traits if `io` implements those as
     /// well, and using the `mbedtls::ssl::io::Io` trait otherwise.
-    pub fn establish<IoType>(&mut self, io: T, hostname: Option<&str>) -> Result<()> where T: IoCallbackUnsafe<IoType> {
+    pub fn eestablish<IoType>(&mut self, io: T, hostname: Option<&str>) -> Result<()> where T: IoCallbackUnsafe<IoType> {
         // SAFETY: In the call to `set_bio_raw`, `self.io` must live as long as
         // `self`, or until the bio is cleared from `ctx`. It lives as long as
         // `self` since it is stored in self and never cleared.
